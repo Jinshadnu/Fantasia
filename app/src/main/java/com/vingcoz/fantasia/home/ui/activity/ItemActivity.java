@@ -14,7 +14,9 @@ import android.util.TypedValue;
 import com.vingcoz.fantasia.R;
 import com.vingcoz.fantasia.adapter.ItemsAdapter;
 import com.vingcoz.fantasia.databinding.ActivityItemBinding;
+import com.vingcoz.fantasia.util.Constants;
 import com.vingcoz.fantasia.util.GridSpacingItemDecoration;
+import com.vingcoz.fantasia.util.NetworkUtilities;
 import com.vingcoz.fantasia.viewmodel.ItemViewModel;
 import com.vingcoz.fantasia.viewmodel.SubCategoryViewModel;
 
@@ -22,6 +24,8 @@ public class ItemActivity extends AppCompatActivity {
     public ItemViewModel itemViewModel;
     public ActivityItemBinding itemBinding;
     public ItemsAdapter itemsAdapter;
+    public String subcategory_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +39,11 @@ public class ItemActivity extends AppCompatActivity {
             onBackPressed();
         });
 
+        subcategory_id=getIntent().getStringExtra("subcategory_id");
+
         itemViewModel= ViewModelProviders.of(this).get(ItemViewModel.class);
 
-//        subCategoryBinding.recyclerSubCategories.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
-//        subCategoryBinding.recyclerSubCategories.setHasFixedSize(true);
+
 
         itemBinding.recyclerProducts.setLayoutManager(new GridLayoutManager(this,2));
         itemBinding.recyclerProducts.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(2), true));
@@ -46,9 +51,6 @@ public class ItemActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL);
         itemBinding.recyclerProducts.addItemDecoration(dividerItemDecoration);
         itemBinding.recyclerProducts.setHasFixedSize(true);
-
-        //
-        // getSubCategoris();
 
         getItems();
     }
@@ -58,17 +60,16 @@ public class ItemActivity extends AppCompatActivity {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-//    public void getSubCategoris(){
-//        subCategoryViewModel.getSubCategories().observe((LifecycleOwner)this,subCategories -> {
-//           subCategoryAdapter=new SubCategoryAdapter(this,subCategories);
-//           subCategoryBinding.recyclerSubCategories.setAdapter(subCategoryAdapter);
-//        });
-//    }
 
     public void getItems(){
-        itemViewModel.getItems().observe((LifecycleOwner)this, items -> {
-            itemsAdapter=new ItemsAdapter(this,items);
-            itemBinding.recyclerProducts.setAdapter(itemsAdapter);
-        });
+        if (NetworkUtilities.getNetworkInstance(this).isConnectedToInternet()){
+            itemViewModel.getItems(subcategory_id).observe(this,response -> {
+                if(response != null && response.getStatus().equals(Constants.SERVER_RESPONSE_SUCCESS)){
+                    itemsAdapter=new ItemsAdapter(this,response.getItems());
+                    itemBinding.recyclerProducts.setAdapter(itemsAdapter);
+
+                }
+            });
+        }
     }
 }

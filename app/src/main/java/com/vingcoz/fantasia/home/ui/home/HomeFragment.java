@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -24,6 +26,9 @@ import com.vingcoz.fantasia.adapter.ImageSliderAdapter;
 import com.vingcoz.fantasia.databinding.FragmentHomeBinding;
 import com.vingcoz.fantasia.pojo.Categories;
 import com.vingcoz.fantasia.pojo.FeaturedProducts;
+import com.vingcoz.fantasia.util.Constants;
+import com.vingcoz.fantasia.util.NetworkUtilities;
+import com.vingcoz.fantasia.viewmodel.BannerViewModel;
 import com.vingcoz.fantasia.viewmodel.CategoryViewModel;
 import com.vingcoz.fantasia.viewmodel.FeaturedProductViewModel;
 import com.vingcoz.fantasia.viewmodel.OffersViewModel;
@@ -40,6 +45,8 @@ public class HomeFragment extends Fragment {
     public FeaturedProductViewModel featuredProductViewModel;
     public FeaturedProductAdapter featuredProductAdapter;
     private HomeViewModel homeViewModel;
+    public BannerViewModel bannerViewModel;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,9 +77,8 @@ public class HomeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         categoryViewModel= ViewModelProviders.of((FragmentActivity)this.getActivity()).get(CategoryViewModel.class);
-       // offersViewModel=ViewModelProviders.of((FragmentActivity)this.getActivity()).get(OffersViewModel.class);
-        featuredProductViewModel=ViewModelProviders.of((FragmentActivity)this.getActivity()).get(FeaturedProductViewModel.class);
-
+        bannerViewModel=ViewModelProviders.of((FragmentActivity)this.getActivity()).get(BannerViewModel.class);
+        offersViewModel= ViewModelProviders.of((FragmentActivity)this.getActivity()).get(OffersViewModel.class);
     }
 
 
@@ -91,6 +97,17 @@ public class HomeFragment extends Fragment {
         homeBinding.recyclerFeaturedProducts.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
         homeBinding.recyclerCategories.setHasFixedSize(true);
 
+        homeBinding.swipe.setOnRefreshListener(() -> {
+            if (NetworkUtilities.getNetworkInstance(getActivity()).isConnectedToInternet()){
+                setValuesToFields();
+                getCategories();
+                getfeaturedProduct();
+                homeBinding.swipe.setRefreshing(false);
+            }else {
+                Toast.makeText(getActivity(),"Internet Connection not available",Toast.LENGTH_LONG).show();
+            }
+        });
+
         setValuesToFields();
 
         getCategories();
@@ -102,62 +119,73 @@ public class HomeFragment extends Fragment {
     }
     private void setValuesToFields() {
         //banner image
-        List<String> bannerList = new ArrayList<>();
-        bannerList.add("1");
-        bannerList.add("2");
-        bannerList.add("3");
-        homeBinding.rlBanner.setVisibility(View.VISIBLE);
-        homeBinding.vpImage.setAdapter(new ImageSliderAdapter(getActivity(), bannerList));
 
-        homeBinding.cpImage.setViewPager(homeBinding.vpImage);
+        if (NetworkUtilities.getNetworkInstance(getActivity()).isConnectedToInternet()){
+            bannerViewModel.getBanners().observe(getActivity(),bannerResponse -> {
+                // List<BannerResponse.Banners> bannerList = new ArrayList<>();
 
-        final float density = getResources().getDisplayMetrics().density;
+                homeBinding.rlBanner.setVisibility(View.VISIBLE);
+                homeBinding.vpImage.setAdapter(new ImageSliderAdapter(getActivity(), bannerResponse.getBanners()));
 
-        //Set circle indicator radius
-        homeBinding.cpImage.setRadius(5 * density);
+                //homeBinding.cpImage.setViewPager(homeBinding.vpImage);
 
-        homeBinding.vpImage.startAutoScroll();
-        homeBinding.vpImage.setInterval(5000);
-        homeBinding.vpImage.setCycle(true);
-        homeBinding.vpImage.setStopScrollWhenTouch(true);
+                final float density = getResources().getDisplayMetrics().density;
 
-        // Pager listener over indicator
-        homeBinding.cpImage.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                //Set circle indicator radius
+                //homeBinding.cpImage.setRadius(5 * density);
 
-            @Override
-            public void onPageSelected(int position) {
+                homeBinding.vpImage.startAutoScroll();
+                homeBinding.vpImage.setInterval(5000);
+                homeBinding.vpImage.setCycle(true);
+                homeBinding.vpImage.setStopScrollWhenTouch(true);
 
-            }
+                // Pager listener over indicator
+//               // homeBinding.cpImage.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//
+//                    @Override
+//                    public void onPageSelected(int position) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onPageScrolled(int pos, float arg1, int arg2) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onPageScrollStateChanged(int pos) {
+//
+//                    }
+//                });
+            });
 
-            @Override
-            public void onPageScrolled(int pos, float arg1, int arg2) {
+        }
+        else{
+            Toast.makeText(getActivity(),"Internet Connection not available",Toast.LENGTH_LONG).show();
+        }
 
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int pos) {
-
-            }
-        });
     }
     public void getCategories(){
-        categoryViewModel.getCategories().observe((LifecycleOwner) this.getActivity(), new Observer<List<Categories>>() {
-            @Override
-            public void onChanged(List<Categories> categories) {
-                categoriesAdapter=new CategoriesAdapter(getActivity(),categories);
-                homeBinding.recyclerCategories.setAdapter(categoriesAdapter);
-            }
-        });
+        if (NetworkUtilities.getNetworkInstance(getActivity()).isConnectedToInternet()){
+            categoryViewModel.getCategories().observe(getActivity(),categoryResponse -> {
+                if(categoryResponse !=null && categoryResponse.getStatus().equals(Constants.SERVER_RESPONSE_SUCCESS)){
+                    categoriesAdapter=new CategoriesAdapter(getActivity(),categoryResponse.getCategories());
+                    homeBinding.recyclerCategories.setAdapter(categoriesAdapter);
+                }
+            });
+        }
+
     }
 
     public void getfeaturedProduct(){
-        featuredProductViewModel.getFeaturedProducts().observe((LifecycleOwner) this.getActivity(), new Observer<List<FeaturedProducts>>() {
-            @Override
-            public void onChanged(List<FeaturedProducts> featuredProducts) {
-                featuredProductAdapter=new FeaturedProductAdapter(getActivity(),featuredProducts);
-                homeBinding.recyclerFeaturedProducts.setAdapter(featuredProductAdapter);
-            }
-        });
+        if (NetworkUtilities.getNetworkInstance(getActivity()).isConnectedToInternet()){
+            offersViewModel.getOffers().observe(this.getActivity(),offerResponse -> {
+                if (offerResponse !=null && offerResponse.getStatus().equals(Constants.SERVER_RESPONSE_SUCCESS)){
+                    featuredProductAdapter=new FeaturedProductAdapter(getActivity(),offerResponse.getSpecial_offer_items());
+                    homeBinding.recyclerFeaturedProducts.setAdapter(featuredProductAdapter);
+                }
+            });
+        }
     }
 
 }

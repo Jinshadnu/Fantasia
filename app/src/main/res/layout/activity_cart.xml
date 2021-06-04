@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F5FA"
+        tools:context=".home.ui.activity.CartActivity">
+
+        <include
+            android:id="@+id/layoutBase"
+            layout="@layout/layout_base"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_cartItems"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/padd_10"
+            android:layout_marginBottom="@dimen/size_50dp"
+            android:layout_below="@id/layoutBase"
+            />
+
+        <TextView
+            android:id="@+id/text_nodata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No cart Items"
+            android:layout_marginTop="@dimen/size_25dp"
+            android:layout_centerInParent="true"
+            android:textColor="@color/md_grey_300"
+            android:textSize="@dimen/size_25dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:gravity="center"/>
+
+
+        <LinearLayout
+            android:id="@+id/linear_checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtTotal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/padd_10"
+                android:text="Total :"
+                android:textColor="@color/purple_700"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/padd_10"
+                android:text="0000.00"
+                android:textColor="@color/purple_700"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBuy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_rectangle_unselected"
+                android:text="CheckOut"
+                android:textColor="@color/purple_700" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:bind="http://schemas.android.com/tools">
     <data>
         <variable
             name="categories"
-            type="com.vingcoz.fantasia.pojo.Categories" />
+            type="com.vingcoz.fantasia.pojo.CategoryResponse.Categoriess" />
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="@dimen/size_160dp"
@@ -35,7 +35,7 @@
                     android:layout_marginTop="@dimen/size_20dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_centerHorizontal="true"
-                    app:categories="@{categories.category_image}"
+                    bind:category_image="@{categories.category_pic}"
                     />
 
                 <TextView

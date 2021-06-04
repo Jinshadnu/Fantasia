@@ -12,14 +12,15 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
 import com.vingcoz.fantasia.R;
+import com.vingcoz.fantasia.pojo.BannerResponse;
 
 import java.util.List;
 
 public class ImageSliderAdapter extends PagerAdapter {
-    private List<String> images;
+    private List<BannerResponse.Banners> images;
     private LayoutInflater inflater;
     private Context context;
-    public ImageSliderAdapter(Context context, List<String> images) {
+    public ImageSliderAdapter(Context context,  List<BannerResponse.Banners> images) {
         this.context = context;
         this.images = images;
         inflater = LayoutInflater.from(this.context);
@@ -42,19 +43,9 @@ public class ImageSliderAdapter extends PagerAdapter {
         assert imageLayout != null;
         ImageView imageView = imageLayout.findViewById(R.id.iv_image);
 
-        if(position == 1) {
-            Glide.with(context)
-                    .load(R.drawable.beq_banner1)
-                    .into(imageView);
-        } else if (position == 2) {
-            Glide.with(context)
-                    .load(R.drawable.beq_banner2)
-                    .into(imageView);
-        } else {
-            Glide.with(context)
-                    .load(R.drawable.beq_banner3)
-                    .into(imageView);
-        }
+        Glide.with(context)
+                .load(images.get(position).getBanner_images())
+                .into(imageView);
 
         view.addView(imageLayout, 0);
         return imageLayout;

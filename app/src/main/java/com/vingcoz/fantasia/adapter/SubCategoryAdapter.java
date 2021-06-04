@@ -13,6 +13,7 @@ import com.vingcoz.fantasia.R;
 import com.vingcoz.fantasia.databinding.LayoutSubcategoryBinding;
 import com.vingcoz.fantasia.home.ui.activity.ItemActivity;
 import com.vingcoz.fantasia.pojo.SubCategories;
+import com.vingcoz.fantasia.pojo.SubCategoryResponse;
 
 import java.util.List;
 
@@ -20,9 +21,9 @@ import static android.view.LayoutInflater.from;
 
 public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.SubCategoryViewHolder> {
     public Context context;
-    public List<SubCategories> subCategoriesList;
+    public List<SubCategoryResponse.Subcategory> subCategoriesList;
 
-    public SubCategoryAdapter(Context context, List<SubCategories> subCategoriesList) {
+    public SubCategoryAdapter(Context context, List<SubCategoryResponse.Subcategory> subCategoriesList) {
         this.context = context;
         this.subCategoriesList = subCategoriesList;
     }
@@ -36,10 +37,13 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull SubCategoryViewHolder holder, int position) {
-     SubCategories subCategories=subCategoriesList.get(position);
+     SubCategoryResponse.Subcategory subCategories=subCategoriesList.get(position);
      holder.subcategoryBinding.setSubcategories(subCategories);
      holder.subcategoryBinding.cardSubcategory.setOnClickListener(v -> {
-         context.startActivity(new Intent(context.getApplicationContext(), ItemActivity.class));
+         Intent  intent=new Intent(context.getApplicationContext(),ItemActivity.class);
+         String subcategory_id=subCategoriesList.get(position).getSubcategory_id();
+         intent.putExtra("subcategory_id",subcategory_id);
+         context.startActivity(intent);
      });
     }
 

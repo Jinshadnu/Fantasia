@@ -19,9 +19,9 @@ public class FeaturedProductRepository {
         MutableLiveData mutableLiveData=new
                 MutableLiveData();
         List<FeaturedProducts> featuredProducts=new ArrayList<>();
-        featuredProducts.add(new FeaturedProducts(R.drawable.topwear,"Watch","2% off","Rs.550000/-"));
-        featuredProducts.add(new FeaturedProducts(R.drawable.t_shirt,"Iphone11pro","2% off","Rs.550000/-"));
-        featuredProducts.add(new FeaturedProducts(R.drawable.formal_shirt,"Shoes","2% off","Rs.550000/-"));
+        featuredProducts.add(new FeaturedProducts(R.drawable.saree,"Saree","2% off","Rs.1000/-"));
+        featuredProducts.add(new FeaturedProducts(R.drawable.kurhis,"Kurthis","2% off","Rs.550/-"));
+        featuredProducts.add(new FeaturedProducts(R.drawable.formal_shirt,"Shirt","2% off","Rs.1500/-"));
 
         mutableLiveData.setValue(featuredProducts);
         return  mutableLiveData;

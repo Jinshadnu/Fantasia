@@ -36,8 +36,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         initToolbar();
-        initFab();
+       // initFab();
         initNavigation();
+
 
     }
 
@@ -48,18 +49,6 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void initFab() {
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-    }
 
     private void initNavigation() {
 
@@ -71,9 +60,9 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_cart, R.id.nav_favourite,
-                R.id.nav_profile, R.id.bottomnavigationHome, R.id.bottomnavigationCart,
-                R.id.bottomnavigationFavorite, R.id.bottomnavigationProfile)
+                R.id.nav_home, R.id.nav_cart,
+                R.id.nav_profile, R.id.nav_settings,R.id.bottomnavigationHome, R.id.bottomnavigationCart,
+                 R.id.bottomnavigationProfile,R.id.bottomnavigationSettings)
                 .setDrawerLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);

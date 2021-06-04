@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Fantasia</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Fantasia</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
     <string name="mycart">MyCart</string>
     <string name="favorites">Favourites</string>
     <string name="profile">Profile</string>
     <string name="next">Next</string>
     <string name="service">24 Hour Service</string>
-    <string name="expresslaundry">Express Laundry</string>
+    <string name="expresslaundry">Quality Product</string>
     <string name="homedelivery">Home Delivery</string>
     <string name="rewards">Rewards</string>
     <string name="service1">Go to our laundry app or website and schedule your wash as per your convenience. We will take it from there. Hassel free, fast and simple!</string>
-    <string name="discover_text">We offers you 24 hour laundry service and we take dirt very seriously.Our experts with the help of our state of art machinery ensure that your clothes come back looking clean and fresh every time.</string>
-    <string name="shop_text">We take dirt very seriously. Our experts, with the help of our state of art machinery ensure that your clothes come back looking clean, tidier and fresh every time</string>
+    <string name="discover_text">We offers you 24 hours service and we take your order very seriously.</string>
+    <string name="shop_text">We take your order. Our Delivery boys deliver your Order to your doorstep</string>
     <string name="offers_text">Find great offers while you discover</string>
     <string name="rewards_text">Select your current location for ordering purpose and pick convenient time and our driver will be on the way Dont worry we will bring the bag</string>
     <string name="get_started">Get Started</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_cart">Cart</string>
     <string name="menu_favourites">Favourites</string>
     <string name="menu_profile">Profile</string>
-
+    <string name="menu_settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="logout_message">Are you sure want to logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

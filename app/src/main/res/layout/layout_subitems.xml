@@ -3,7 +3,7 @@
     <data>
         <variable
             name="subitems"
-            type="com.vingcoz.fantasia.pojo.Items" />
+            type="com.vingcoz.fantasia.pojo.ItemResponse.Items" />
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:layout_height="@dimen/size_120dp"
                     android:layout_marginTop="@dimen/size_15dp"
                     android:layout_gravity="center_horizontal"
-                    app:items="@{subitems.item_image}"                     />
+                    bind:item_image="@{subitems.item_image}"                     />
 
                 <TextView
                     android:id="@+id/textView35"

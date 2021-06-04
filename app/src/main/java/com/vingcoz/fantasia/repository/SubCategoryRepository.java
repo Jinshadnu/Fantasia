@@ -5,43 +5,45 @@ import androidx.lifecycle.MutableLiveData;
 
 
 import com.vingcoz.fantasia.R;
+import com.vingcoz.fantasia.core.NetworkInterface;
+import com.vingcoz.fantasia.core.RetrofitClient;
 import com.vingcoz.fantasia.pojo.SubCategories;
+import com.vingcoz.fantasia.pojo.SubCategoryResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SubCategoryRepository {
+    public NetworkInterface networkInterface;
 
     public SubCategoryRepository() {
+
     }
 
-    public LiveData<List<SubCategories>> getSubCategories(){
+    public LiveData<SubCategoryResponse> getSubcategory(String category_id){
         MutableLiveData mutableLiveData=new MutableLiveData();
 
-        List<SubCategories> subCategoriesList=new ArrayList<>();
-        subCategoriesList.add(new SubCategories("Sarees", R.drawable.saree));
-        subCategoriesList.add(new SubCategories("Churidhar",R.drawable.churidhar));
-        subCategoriesList.add(new SubCategories("Kurthis",R.drawable.kurhis));
-        subCategoriesList.add(new SubCategories("Chudi Bottom",R.drawable.chudi_bottoms));
+        networkInterface= RetrofitClient.getRetrofitInstance().create(NetworkInterface.class);
+        Call<SubCategoryResponse> responseCall=networkInterface.getSubCategories(category_id);
+        responseCall.enqueue(new Callback<SubCategoryResponse>() {
+            @Override
+            public void onResponse(Call<SubCategoryResponse> call, Response<SubCategoryResponse> response) {
+                SubCategoryResponse subCategoryResponse=response.body();
+                if (subCategoryResponse !=null){
+                    mutableLiveData.setValue(subCategoryResponse);
+                }
+            }
 
-
-        mutableLiveData.setValue(subCategoriesList);
+            @Override
+            public void onFailure(Call<SubCategoryResponse> call, Throwable t) {
+                mutableLiveData.setValue(null);
+            }
+        });
 
         return mutableLiveData;
     }
-
-//    public LiveData<List<Items>> getItems(){
-//        MutableLiveData mutableLiveData=new MutableLiveData();
-//        List<Items> itemsList=new ArrayList<>();
-//        itemsList.add(new Items(100,"Iphone 11", R.drawable.iphone1,"15000.00"));
-//        itemsList.add(new Items(101,"Note 10", R.drawable.note10,"25000.00"));
-//        itemsList.add(new Items(102,"Note 10", R.drawable.note10,"50000.00"));
-//        itemsList.add(new Items(101,"Galaxy f41", R.drawable.galaxyf41,"25000.00"));
-//        itemsList.add(new Items(101,"Note 10", R.drawable.note10,"25000.00"));
-//
-//
-//        mutableLiveData.setValue(itemsList);
-//
-//        return mutableLiveData;
-//    }
 }

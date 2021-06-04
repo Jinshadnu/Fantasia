@@ -123,5 +123,6 @@ public class SliderItemFragment extends Fragment {
         imageView.setAnimation(PAGE_IMAGE[position]);
 
 
+
     }
 }

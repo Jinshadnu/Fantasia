@@ -5,23 +5,19 @@ import androidx.lifecycle.ViewModel;
 
 
 import com.vingcoz.fantasia.pojo.SubCategories;
+import com.vingcoz.fantasia.pojo.SubCategoryResponse;
 import com.vingcoz.fantasia.repository.SubCategoryRepository;
 
 import java.util.List;
 
 public class SubCategoryViewModel extends ViewModel {
     public SubCategoryRepository subCategoryRepository;
-
-
     public SubCategoryViewModel() {
-        subCategoryRepository=new SubCategoryRepository();
+        this.subCategoryRepository=new SubCategoryRepository();
     }
 
-    public LiveData<List<SubCategories>> getSubCategories(){
-        return subCategoryRepository.getSubCategories();
+    public LiveData<SubCategoryResponse> getSubCategories(String category_id){
+        return subCategoryRepository.getSubcategory(category_id);
     }
 
-//    public LiveData<List<Items>> getItems(){
-//        return subCategoryRepository.getItems();
-//    }
 }

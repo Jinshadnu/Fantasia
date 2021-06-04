@@ -3,13 +3,19 @@ package com.vingcoz.fantasia.splash;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.vingcoz.fantasia.R;
 import com.vingcoz.fantasia.databinding.ActivitySplashBinding;
+import com.vingcoz.fantasia.home.HomeActivity;
+import com.vingcoz.fantasia.util.Constants;
 import com.vingcoz.fantasia.welcome.WelcomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -23,16 +29,28 @@ public class SplashActivity extends AppCompatActivity {
 
         splashBinding= DataBindingUtil.setContentView(this,R.layout.activity_splash);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(SplashActivity.this, WelcomeActivity.class);
-                startActivity(i);
+        Animation animation= AnimationUtils.loadAnimation(this,R.anim.mytransition);
 
-                finish();
+        splashBinding.imageView.setAnimation(animation);
 
-            }
-        },SPLASH_TIME_OUT);
+
+        new Handler().postDelayed(this::openScreens,SPLASH_TIME_OUT);
+
+
+    }
+    private void openScreens() {
+        SharedPreferences sharedpreferences = getSharedPreferences(Constants.MyPREFERENCES, Context.MODE_PRIVATE);
+        boolean isLogdin = sharedpreferences.getBoolean(Constants.IsUserLogIn, false);
+
+        if(isLogdin){
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }
+
+        else {
+            startActivity(new Intent(this, WelcomeActivity.class));
+            finish();
+        }
 
     }
 }

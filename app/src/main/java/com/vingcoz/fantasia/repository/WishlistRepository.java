@@ -19,9 +19,9 @@ public class WishlistRepository {
         MutableLiveData mutableLiveData=new MutableLiveData();
 
         List<Wishlist> wishlists=new ArrayList<>();
-        wishlists.add(new Wishlist(R.drawable.t_shirt,"Iphone11 Pro","Rs.1100000"));
-        wishlists.add(new Wishlist(R.drawable.topwear,"Watch","Rs.900000"));
-        wishlists.add(new Wishlist(R.drawable.bottomwear,"Iphone11 Pro","Rs.1100000"));
+        wishlists.add(new Wishlist(R.drawable.churidhar,"Churidar","Rs.1100"));
+        wishlists.add(new Wishlist(R.drawable.saree,"Saree","Rs.900"));
+        wishlists.add(new Wishlist(R.drawable.chudi_bottoms,"Chudi","Rs.1100"));
 
        mutableLiveData.setValue(wishlists);
 

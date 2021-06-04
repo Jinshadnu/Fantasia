@@ -14,13 +14,17 @@ import android.util.TypedValue;
 import com.vingcoz.fantasia.R;
 import com.vingcoz.fantasia.adapter.SubCategoryAdapter;
 import com.vingcoz.fantasia.databinding.ActivitySubCategoryBinding;
+import com.vingcoz.fantasia.util.Constants;
 import com.vingcoz.fantasia.util.GridSpacingItemDecoration;
+import com.vingcoz.fantasia.util.NetworkUtilities;
 import com.vingcoz.fantasia.viewmodel.SubCategoryViewModel;
 
 public class SubCategoryActivity extends AppCompatActivity {
     public ActivitySubCategoryBinding subCatgBinding;
     public SubCategoryViewModel subCategoryViewModel;
     public SubCategoryAdapter subCategoryAdapter;
+    public String category_id,subcategoryId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,9 @@ public class SubCategoryActivity extends AppCompatActivity {
         subCatgBinding.layoutBase.toolbar.setNavigationOnClickListener(v -> {
             onBackPressed();
         });
+
+        category_id=getIntent().getStringExtra("category_id");
+
         subCategoryViewModel= ViewModelProviders.of(this).get(SubCategoryViewModel.class);
 
         subCatgBinding.recyclerSubcategory.setLayoutManager(new GridLayoutManager(this,2));
@@ -50,11 +57,16 @@ public class SubCategoryActivity extends AppCompatActivity {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-    public void getSubCategoris(){
-        subCategoryViewModel.getSubCategories().observe((LifecycleOwner)this, subCategories -> {
-            subCategoryAdapter=new SubCategoryAdapter(this,subCategories);
-            subCatgBinding.recyclerSubcategory.setAdapter(subCategoryAdapter);
-        });
+    public void getSubCategoris() {
+        if (NetworkUtilities.getNetworkInstance(this).isConnectedToInternet()) {
+            subCategoryViewModel.getSubCategories(category_id).observe(this, subCategoryResponse -> {
+                if (subCategoryResponse != null && subCategoryResponse.getStatus().equals(Constants.SERVER_RESPONSE_SUCCESS)) {
+                    subCategoryAdapter = new SubCategoryAdapter(this, subCategoryResponse.getSubcategory());
+                    subCatgBinding.recyclerSubcategory.setAdapter(subCategoryAdapter);
+                }
+
+            });
+        }
     }
-}
+    }
 

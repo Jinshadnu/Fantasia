@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".home.ui.activity.AddAddressActivity">
+
+
+        <include
+            android:id="@+id/layoutBase"
+            layout="@layout/layout_base"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutBase"
+            android:layout_marginTop="@dimen/size_15dp"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:background="@drawable/relative_border"
+            android:textColor="@color/black"
+            android:text="Add New"
+            android:fontFamily="@font/amaranth"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_address"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/button_add"
+            android:layout_marginTop="@dimen/padd_10"
+            />
+
+    </RelativeLayout>
+</layout>

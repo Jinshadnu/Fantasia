@@ -18,15 +18,15 @@
         tools:layout="@layout/fragment_cart" />
 
     <fragment
-        android:id="@+id/nav_favourite"
-        android:name="com.vingcoz.fantasia.home.ui.favourite.FavouriteFragment"
-        android:label="@string/menu_favourites"
-        tools:layout="@layout/fragment_favourite" />
-    <fragment
         android:id="@+id/nav_profile"
         android:name="com.vingcoz.fantasia.home.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.vingcoz.fantasia.home.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/bottomnavigationHome"
         android:name="com.vingcoz.fantasia.home.ui.home.HomeFragment"
@@ -38,13 +38,13 @@
         android:label="@string/menu_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
-        android:id="@+id/bottomnavigationFavorite"
-        android:name="com.vingcoz.fantasia.home.ui.favourite.FavouriteFragment"
-        android:label="@string/menu_favourites"
-        tools:layout="@layout/fragment_favourite" />
-    <fragment
         android:id="@+id/bottomnavigationProfile"
         android:name="com.vingcoz.fantasia.home.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/bottomnavigationSettings"
+        android:name="com.vingcoz.fantasia.home.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

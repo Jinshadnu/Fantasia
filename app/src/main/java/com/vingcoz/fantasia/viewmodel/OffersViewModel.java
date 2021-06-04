@@ -4,21 +4,21 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 
+import com.vingcoz.fantasia.pojo.OfferResponse;
 import com.vingcoz.fantasia.pojo.Offers;
+import com.vingcoz.fantasia.repository.OfferRepository;
 import com.vingcoz.fantasia.repository.OffersRepository;
 
 import java.util.List;
 
 public class OffersViewModel extends ViewModel {
-    public OffersRepository offersRepository;
+    public OfferRepository offerRepository;
 
     public OffersViewModel() {
-        this.offersRepository=new OffersRepository();
+        this.offerRepository = new OfferRepository();
     }
 
-
-    public LiveData<List<Offers>> getOffers()
-    {
-        return offersRepository.getOffers();
+    public LiveData<OfferResponse> getOffers(){
+        return offerRepository.getOffers();
     }
 }

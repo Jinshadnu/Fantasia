@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vingcoz.fantasia">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +14,20 @@
         android:theme="@style/Theme.Fantasia"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".home.ui.activity.ProductDetailsActivity"></activity>
+        <activity android:name=".home.ui.activity.AddAddressActivity"></activity>
+        <activity android:name=".home.ui.activity.OrderedItemsActivity" />
+        <activity android:name=".home.ui.activity.OrderActivity" />
+        <activity android:name=".home.ui.activity.AboutUsActivity" />
+        <activity android:name=".home.ui.activity.DefaultAddressActivity" />
+        <activity android:name=".home.ui.activity.CartActivity" />
+        <activity android:name=".util.BaseActivity" />
+        <activity android:name=".home.ui.activity.ForgotPasswordActivity" />
+        <activity android:name=".home.ui.activity.ChangepasswordActivity" />
+        <activity android:name=".home.ui.activity.MyOrderActivity" />
+        <activity android:name=".home.ui.activity.AddressActivity" />
+        <activity android:name=".home.ui.activity.PriceDetailsActivity" />
+        <activity android:name=".home.ui.activity.ShippingAddressActivity" />
+        <activity android:name=".home.ui.activity.ProductDetailsActivity" />
         <activity android:name=".home.ui.activity.ItemActivity" />
         <activity android:name=".home.ui.activity.SubCategoryActivity" />
         <activity android:name=".welcome.WelcomeActivity" />

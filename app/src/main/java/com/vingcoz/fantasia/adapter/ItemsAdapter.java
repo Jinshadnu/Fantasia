@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vingcoz.fantasia.R;
 import com.vingcoz.fantasia.databinding.LayoutSubitemsBinding;
 import com.vingcoz.fantasia.home.ui.activity.ProductDetailsActivity;
+import com.vingcoz.fantasia.pojo.ItemResponse;
 import com.vingcoz.fantasia.pojo.Items;
 
 import java.util.List;
@@ -21,9 +22,10 @@ import static android.view.LayoutInflater.from;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
     public Context context;
-    public List<Items> itemsList;
+    public List<ItemResponse.Items> itemsList;
+    public String subcategoryId;
 
-    public ItemsAdapter(Context context, List<Items> itemsList) {
+    public ItemsAdapter(Context context, List<ItemResponse.Items> itemsList) {
         this.context = context;
         this.itemsList = itemsList;
     }
@@ -37,11 +39,21 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-      Items items=itemsList.get(position);
+      ItemResponse.Items items=itemsList.get(position);
       holder.subitemsBinding.setSubitems(items);
       holder.subitemsBinding.cardViewItem.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
       holder.subitemsBinding.cardViewItem.setOnClickListener(v -> {
-          context.startActivity(new Intent(context.getApplicationContext(), ProductDetailsActivity.class));
+          Intent intent=new Intent(context.getApplicationContext(), ProductDetailsActivity.class);
+          intent.putExtra("subcategory_id",subcategoryId);
+          intent.putExtra("item_name",itemsList.get(position).getItem_name());
+          intent.putExtra("item_price",itemsList.get(position).getItem_price());
+          intent.putExtra("item_decription",itemsList.get(position).getItem_description());
+          intent.putExtra("item_id",itemsList.get(position).getItem_id());
+          intent.putExtra("pic1",itemsList.get(position).getPic1());
+          intent.putExtra("pic2",itemsList.get(position).getPic2());
+          intent.putExtra("pic3",itemsList.get(position).getPic3());
+          intent.putExtra("pic4",itemsList.get(position).getPic4());
+          context.startActivity(intent);
       });
 
     }

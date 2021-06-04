@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.ui.activity.AddressActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <EditText
+                android:id="@+id/editTextTextPincode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/search_background"
+                android:drawablePadding="@dimen/size_10dp"
+                android:ems="10"
+                android:maxLength="6"
+                android:fontFamily="@font/amaranth"
+                android:hint="Enter Pincode"
+                android:textColor="@color/purple_500"
+                android:textColorHint="@color/md_grey_400"
+                android:inputType="number"
+                android:padding="@dimen/padd_10"
+                app:layout_constraintEnd_toStartOf="@+id/editTextTextLandmark"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <EditText
+                android:id="@+id/editTextTextLandmark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/search_background"
+                android:drawablePadding="@dimen/size_10dp"
+                android:ems="10"
+                android:fontFamily="@font/amaranth"
+                android:hint="Enter Landmark"
+                android:inputType="textPersonName"
+                android:textColor="@color/purple_500"
+                android:textColorHint="@color/md_grey_400"
+                android:padding="@dimen/padd_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/editTextTextPincode"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <EditText
+                android:id="@+id/editTextTextAddress"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/size_60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/purple_500"
+                android:textColorHint="@color/md_grey_400"
+                android:background="@drawable/search_background"
+                android:drawablePadding="@dimen/size_10dp"
+                android:ems="10"
+                android:fontFamily="@font/amaranth"
+                android:hint="House No,Building Name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <EditText
+                android:id="@+id/editTextLiveLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/search_background"
+                android:drawablePadding="@dimen/size_10dp"
+                android:editable="false"
+                android:ems="10"
+                android:fontFamily="@font/amaranth"
+                android:hint="Post"
+                android:inputType="textPersonName"
+                android:padding="@dimen/padd_10"
+                android:textColor="@color/purple_500"
+                android:textColorHint="@color/md_grey_400"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_post" />
+
+
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/amaranth"
+                android:text="Pincode"
+                android:textColor="@color/colorDarkstateRed"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextLiveLocation" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/amaranth"
+                android:text="Landmark"
+                android:textColor="@color/colorDarkstateRed"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/editTextLiveLocation" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/amaranth"
+                android:text="Address(Building No,Building Name)*"
+                android:textColor="@color/colorDarkstateRed"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/textView_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/amaranth"
+                android:text="Post*"
+                android:textColor="@color/colorDarkstateRed"
+                android:textSize="@dimen/size_16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextAddress" />
+
+            <include
+                android:id="@+id/layoutBase"
+                layout="@layout/layout_base"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/amaranth"
+                android:text="Delivery Address"
+                android:textColor="#F44336"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutBase" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/purple_700"
+                android:textColor="@color/white"
+                android:text="Submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextLandmark" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+</layout>
