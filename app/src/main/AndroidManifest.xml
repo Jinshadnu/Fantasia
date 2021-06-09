@@ -14,7 +14,8 @@
         android:theme="@style/Theme.Fantasia"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".home.ui.activity.AddAddressActivity"></activity>
+        <activity android:name=".home.ui.activity.EditProfileActivity"></activity>
+        <activity android:name=".home.ui.activity.AddAddressActivity" />
         <activity android:name=".home.ui.activity.OrderedItemsActivity" />
         <activity android:name=".home.ui.activity.OrderActivity" />
         <activity android:name=".home.ui.activity.AboutUsActivity" />

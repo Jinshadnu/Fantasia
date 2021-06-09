@@ -162,7 +162,13 @@ public class ProductDetailsActivity extends BaseActivity {
                 if (commonResponse != null && commonResponse.getStatus().equals(Constants.SERVER_RESPONSE_SUCCESS)){
                     showSnackBar(this,commonResponse.getMessage());
                 }
+                if (commonResponse.getStatus().equals(Constants.SERVER_RESPONSE_ERROR)){
+                    showErrorSnackBar(this,commonResponse.getMessage());
+                }
             });
+        }
+        else {
+            showErrorSnackBar(this,"No Internet Connection");
         }
     }
 

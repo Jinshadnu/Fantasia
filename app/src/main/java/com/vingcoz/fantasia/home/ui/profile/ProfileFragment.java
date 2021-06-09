@@ -1,8 +1,10 @@
 package com.vingcoz.fantasia.home.ui.profile;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -18,9 +20,12 @@ import com.vingcoz.fantasia.databinding.FragmentProfileBinding;
 import com.vingcoz.fantasia.home.ui.activity.AddAddressActivity;
 import com.vingcoz.fantasia.home.ui.activity.AddressActivity;
 import com.vingcoz.fantasia.home.ui.activity.ChangepasswordActivity;
+import com.vingcoz.fantasia.home.ui.activity.EditProfileActivity;
 import com.vingcoz.fantasia.home.ui.activity.ForgotPasswordActivity;
 import com.vingcoz.fantasia.home.ui.activity.MyOrderActivity;
+import com.vingcoz.fantasia.home.ui.activity.OrderActivity;
 import com.vingcoz.fantasia.login.LoginActivity;
+import com.vingcoz.fantasia.util.Constants;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +35,10 @@ import com.vingcoz.fantasia.login.LoginActivity;
 public class ProfileFragment extends Fragment {
     public FragmentProfileBinding profileBinding;
     public EditText editText_phone,editText_email;
+    public String userphone,useremail;
+    public String user_id;
+    public String username,phone,email;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,27 +85,40 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         profileBinding= DataBindingUtil.inflate(inflater,R.layout.fragment_profile,container,false);
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.MyPREFERENCES, Context.MODE_PRIVATE);
+        user_id=sharedPreferences.getString(Constants.USER_ID,user_id);
+        userphone=sharedPreferences.getString(Constants.PHONE,null);
+        useremail=sharedPreferences.getString(Constants.EMAIL,null);
+        username=sharedPreferences.getString(Constants.USER_NAME,null);
+
+        profileBinding.textView5.setText(userphone);
+        profileBinding.textView6.setText(useremail);
+        profileBinding.textUsername.setText(username);
+
+
+
+
         profileBinding.textAddress.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AddAddressActivity.class));
         });
         profileBinding.textHistory.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), MyOrderActivity.class));
+            startActivity(new Intent(getActivity(), OrderActivity.class));
         });
 
         profileBinding.textChangepassword.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ChangepasswordActivity.class));
         });
 
-        profileBinding.textForgetpassword.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ForgotPasswordActivity.class));
-        });
+//        profileBinding.textForgetpassword.setOnClickListener(v -> {
+//            startActivity(new Intent(getActivity(), ForgotPasswordActivity.class));
+//        });
 
         profileBinding.textLogout.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), LoginActivity.class));
         });
 
         profileBinding.textEditprofile.setOnClickListener(v -> {
-            withEditText(v);
+            startActivity(new Intent(getActivity(), EditProfileActivity.class));
         });
 //        profileBinding.layoutBase.textTitle.setText("Profile");
 //

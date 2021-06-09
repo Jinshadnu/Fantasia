@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.widget.Toast;
 
 import com.vingcoz.fantasia.R;
 import com.vingcoz.fantasia.adapter.SubCategoryAdapter;
@@ -66,6 +67,9 @@ public class SubCategoryActivity extends AppCompatActivity {
                 }
 
             });
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Internet Connection not available",Toast.LENGTH_LONG).show();
         }
     }
     }

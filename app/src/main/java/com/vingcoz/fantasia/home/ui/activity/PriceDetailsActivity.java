@@ -51,11 +51,13 @@ public class PriceDetailsActivity extends BaseActivity {
         price = getIntent().getStringExtra("price");
         delivery_charge = getIntent().getStringExtra("delivery_charge");
 
-        priceDetailsBinding.minimum.setText(minimum);
+        priceDetailsBinding.minimum.setText("Minimum Order Amount : " + minimum);
         priceDetailsBinding.item.setText(count);
         priceDetailsBinding.shipping.setText(delivery_charge);
         priceDetailsBinding.total.setText(price);
         priceDetailsBinding.btnAddToCart.setText("Rs." + price);
+
+        priceDetailsBinding.radioCashDelivery.setChecked(true);
 
 
         priceDetailsBinding.btnBuy.setOnClickListener(v -> {

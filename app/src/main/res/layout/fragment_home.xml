@@ -26,7 +26,7 @@
                     android:id="@+id/rl_banner"
                     android:layout_width="match_parent"
                     android:layout_marginTop="0dp"
-                    android:layout_height="@dimen/size_180dp"
+                    android:layout_height="@dimen/size_200dp"
                     android:focusableInTouchMode="true">
 
                     <com.vingcoz.fantasia.util.AutoScrollViewPager
@@ -92,13 +92,13 @@
                     android:id="@+id/text_featured_products"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Featured Products"
+                    android:text="Special Offers"
                     android:textColor="@color/black"
                     android:padding="@dimen/size_5dp"
                     android:fontFamily="@font/amaranth"
                     android:textStyle="bold"
                     android:layout_below="@id/recycler_categories"
-                    android:layout_marginTop="@dimen/size_10dp"
+                    android:layout_marginTop="@dimen/size_5dp"
                     android:textSize="@dimen/size_20dp"
                     android:layout_marginLeft="@dimen/size_10dp"/>
 
@@ -107,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_featured_products"
-                    android:layout_marginBottom="@dimen/size_50dp"
+                    android:layout_marginBottom="@dimen/size_20dp"
                     android:layout_marginTop="@dimen/size_1dp"
                     android:padding="@dimen/size_5dp"/>
 

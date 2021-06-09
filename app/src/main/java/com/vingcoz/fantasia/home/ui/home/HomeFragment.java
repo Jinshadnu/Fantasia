@@ -174,7 +174,9 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
-
+        else{
+            Toast.makeText(getActivity(),"Internet Connection not available",Toast.LENGTH_LONG).show();
+        }
     }
 
     public void getfeaturedProduct(){
@@ -185,6 +187,9 @@ public class HomeFragment extends Fragment {
                     homeBinding.recyclerFeaturedProducts.setAdapter(featuredProductAdapter);
                 }
             });
+        }
+        else{
+            Toast.makeText(getActivity(),"Internet Connection not available",Toast.LENGTH_LONG).show();
         }
     }
 

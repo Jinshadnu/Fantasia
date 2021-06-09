@@ -81,7 +81,7 @@
                         android:layout_marginLeft="@dimen/size_8dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/amaranth"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         />
 
@@ -92,8 +92,9 @@
                         android:layout_height="wrap_content"
                         android:text="@{subitems.item_price}"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:padding="1dp"
+                        android:textStyle="bold"
                         android:fontFamily="@font/amaranth"
                         android:layout_toRightOf="@id/textView36"
                         app:layout_constraintBottom_toBottomOf="@+id/textView36"

@@ -56,18 +56,18 @@ public interface NetworkInterface {
 //    @GET("get_favourites")
 //    Call<FavouritesResponse> getFavourites(@Query("user_id")String user_id);
 //
-//    @FormUrlEncoded
-//    @POST("edit_profile")
-//    Call<CommonResponse> editProfile(@Field("user_id")String userId,@Field("phone") String phone,@Field("email") String email);
-//
+    @FormUrlEncoded
+    @POST("edit_profile")
+    Call<CommonResponse> editProfile(@Field("user_id")String userId,@Field("phone") String phone,@Field("email") String email);
+
     @FormUrlEncoded
     @POST("change_password")
     Call<CommonResponse> changePassword(@Field("user_id") String id, @Field("old_password") String oldPassword, @Field("new_password")String newPassword,@Field("confirm_password")String confirPassword);
 
-//    @FormUrlEncoded
-//    @POST("forgot_password")
-//    Call<CommonResponse> forgetPassword(@Field("email_id") String email,@Field("user_id")String user_id);
-//
+    @FormUrlEncoded
+    @POST("forgot_password")
+    Call<CommonResponse> forgetPassword(@Field("email_id") String email,@Field("user_id")String user_id);
+
     @GET("get_special_offers")
     Call<OfferResponse> getSpecialOffers();
 //

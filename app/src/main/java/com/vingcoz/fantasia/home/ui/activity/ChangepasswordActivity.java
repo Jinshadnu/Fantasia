@@ -29,6 +29,14 @@ public class ChangepasswordActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         changePasswordBinding= DataBindingUtil.setContentView(this,R.layout.activity_changepassword);
 
+        changePasswordBinding.layoutBase.textTitle.setText("Change Password");
+
+        changePasswordBinding.layoutBase.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+
+        changePasswordBinding.layoutBase.toolbar.setNavigationOnClickListener(v -> {
+            onBackPressed();
+        });
+
         SharedPreferences sharedPreferences=getSharedPreferences(Constants.MyPREFERENCES,MODE_PRIVATE);
 
         id=sharedPreferences.getString(Constants.USER_ID,null);
